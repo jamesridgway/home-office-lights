@@ -1,3 +1,4 @@
+import json
 import time
 from pprint import pprint
 
@@ -15,7 +16,7 @@ strip_manager = StripManager.default()
 while True:
     try:
         msg_wrapper = queue.receiveMessage().execute()
-        msg = msg_wrapper['message']
+        msg = json.loads(msg_wrapper['message'])
 
         if msg['type'] == 'solid-colour':
           strip_manager.solid_color(msg['r'], msg['g'], msg['b'])
