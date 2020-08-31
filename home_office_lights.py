@@ -20,6 +20,7 @@ while True:
 
         if msg['type'] == 'solid-colour':
           strip_manager.solid_color(msg['r'], msg['g'], msg['b'])
+          print('Removing message {}'.format(msg_wrapper['id']))
           queue.deleteMessage(id=msg_wrapper['id'])
         else:
           pprint(msg)
