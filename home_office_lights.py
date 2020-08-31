@@ -14,7 +14,8 @@ queue.createQueue().execute()
 strip_manager = StripManager.default()
 while True:
     try:
-        msg = queue.receiveMessage().execute()
+        msg_wrapper = queue.receiveMessage().execute()
+        msg = msg_wrapper['message']
 
         if msg['type'] == 'solid-colour':
           strip_manager.solid_color(msg['r'], msg['g'], msg['b'])
