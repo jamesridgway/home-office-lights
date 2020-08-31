@@ -1,12 +1,28 @@
-from rsmq.consumer import RedisSMQConsumer
+import time
+from pprint import pprint
 
-# define Processor
-def processor(id, message, rc, ts):
-  # Do something
-  return True
+from rsmq import RedisSMQ
+from rsmq.cmd import NoMessageInQueue
 
-# create consumer
-consumer = RedisSMQConsumer('my-queue', processor, host='127.0.0.1')
+from strip_manager import StripManager
 
-# run consumer
-consumer.run()
+queue = RedisSMQ(host="192.168.75.243", qname="home-office-lights")
+
+queue.deleteQueue().exceptions(False).execute()
+queue.createQueue().execute()
+
+strip_manager = StripManager.default()
+while True:
+    try:
+        msg = queue.receiveMessage().execute()
+
+        if msg['type'] == 'solid-colour':
+          strip_manager.solid_color(msg['r'], msg['g'], msg['b'])
+        else:
+          pprint(msg)
+    except NoMessageInQueue as e:
+        print("Queue empty")
+        try:
+            time.sleep(1)
+        except KeyboardInterrupt as ki:
+            break
