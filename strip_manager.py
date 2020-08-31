@@ -17,15 +17,16 @@ class StripManager:
     def __init__(self, led_count, led_pin, led_freq_hz, led_dma, led_brightness, led_invert, led_channel):
         self.strip = Adafruit_NeoPixel(led_count, led_pin, led_freq_hz, led_dma, led_brightness, led_invert,
                                        led_channel)
-        self.strip.begin()
 
     def solid_color(self, r, g, b):
+        self.strip.begin()
         self.strip.setBrightness(255)
         for i in range(0, self.strip.numPixels()):
             self.strip.setPixelColor(i, Color(r, g, b))
             self.strip.show()
 
     def clear(self):
+        self.strip.begin()
         for i in range(0, self.strip.numPixels()):
             self.strip.setPixelColor(i, Color(0, 0, 0))
             self.strip.show()
