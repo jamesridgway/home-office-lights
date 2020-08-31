@@ -20,12 +20,14 @@ class StripManager:
         self.strip.begin()
 
     def solid_color(self, r, g, b):
+        self.strip.setBrightness(255)
         for i in range(0, self.strip.numPixels()):
             self.strip.setPixelColor(i, Color(r, g, b))
             self.strip.show()
 
     def clear(self):
         self.solid_color(0, 0, 0)
+        self.strip.setBrightness(0)
 
     def orange(self):
         self.solid_color(255, 64, 0)
