@@ -1,3 +1,5 @@
+import time
+
 from rpi_ws281x import Adafruit_NeoPixel, Color
 
 
@@ -24,6 +26,16 @@ class StripManager:
         for i in range(0, self.strip.numPixels()):
             self.strip.setPixelColor(i, Color(r, g, b))
             self.strip.show()
+
+    def alert(self, r, g, b, wait_ms=50, iterations=10):
+        for j in range(iterations):
+            for q in range(3):
+                for i in range(0, self.strip.numPixels(), 3):
+                    self.strip.setPixelColor(i + q, Color(r, g, b))
+                self.strip.show()
+                time.sleep(wait_ms / 1000.0)
+                for i in range(0, self.strip.numPixels(), 3):
+                    self.strip.setPixelColor(i + q, 0)
 
     def clear(self):
         self.solid_color(0, 0, 0)
