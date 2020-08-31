@@ -1,4 +1,4 @@
-from rpi_ws281x import *
+from rpi_ws281x import Adafruit_NeoPixel, Color
 
 
 class StripManager:
@@ -27,7 +27,9 @@ class StripManager:
 
     def clear(self):
         self.solid_color(0, 0, 0)
-        self.strip.setBrightness(0)
+        for i in range(0, self.strip.numPixels()):
+            self.strip.setPixelColor(i, Color(0, 0, 0))
+            self.strip.show()
 
     def orange(self):
         self.solid_color(255, 64, 0)
