@@ -21,7 +21,7 @@ class StripManager:
 
     def solid_color(self, r, g, b):
         for i in range(0, self.strip.numPixels()):
-            self.strip.setPixelColor(i, Color(0, 0, 0))
+            self.strip.setPixelColor(i, Color(r, g, b))
             self.strip.show()
 
     def clear(self):
