@@ -20,6 +20,7 @@ def handle_msg(msg):
         strip_manager.solid_color(msg['r'], msg['g'], msg['b'])
 
 previous_msg = None
+queue_empty = False
 while True:
     try:
         msg_wrapper = queue.receiveMessage().execute()
@@ -34,8 +35,11 @@ while True:
         if msg['type'] == 'alert' and previous_msg is not None:
             handle_msg(previous_msg)
 
+        queue_empty = False
     except NoMessageInQueue as e:
-        print("Queue empty")
+        if not queue_empty:
+            print("Queue empty")
+            queue_empty = True
         try:
             time.sleep(1)
         except KeyboardInterrupt as ki:
