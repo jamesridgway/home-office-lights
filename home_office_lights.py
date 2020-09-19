@@ -18,6 +18,8 @@ def handle_msg(msg):
         strip_manager.solid_color(msg['r'], msg['g'], msg['b'])
     if msg['type'] == 'alert':
         strip_manager.solid_color(msg['r'], msg['g'], msg['b'])
+    if msg['type'] == 'off':
+        strip_manager.clear()
 
 previous_msg = None
 queue_empty = False
