@@ -13,7 +13,7 @@ cp ./home-office-lights/home-office-lights.service /lib/systemd/system/home-offi
 echo "Restart service"
 sudo systemctl daemon-reload
 sudo systemctl enable home-office-lights.service
-sudo systemctl start home-office-lights.service
+sudo systemctl restart home-office-lights.service
 
 echo "Status"
 sudo systemctl status home-office-lights.service
