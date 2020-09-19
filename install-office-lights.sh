@@ -9,8 +9,6 @@ fi
 
 echo "Service config"
 cp ./home-office-lights/home-office-lights.service /lib/systemd/system/home-office-lights.service
-sudo chmod +x /etc/init.d/home-office-lights
-sudo update-rc.d home-office-lights defaults
 
 echo "Restart service"
 sudo systemctl daemon-reload
