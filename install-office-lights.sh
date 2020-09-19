@@ -8,11 +8,16 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 echo "Service config"
-cp ./home-office-lights/home-office-lights /etc/init.d/home-office-lights
+cp ./home-office-lights/home-office-lights.service /lib/systemd/system/home-office-lights.service
 sudo chmod +x /etc/init.d/home-office-lights
 sudo update-rc.d home-office-lights defaults
 
 echo "Restart service"
-sudo service home-office-lights restart
+sudo systemctl daemon-reload
+sudo systemctl enable home-office-lights.service
+sudo systemctl start home-office-lights.service
+
+echo "Status"
+sudo systemctl status home-office-lights.service
 
 echo "Done!"
