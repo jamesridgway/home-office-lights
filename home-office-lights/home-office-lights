@@ -13,7 +13,7 @@
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/bin/python3
-DAEMON_ARGS=/usr/bin/home-office-lights/home_office_lights.py
+DAEMON_ARGS=/srv/home-office-lights/home_office_lights.py
 NAME=home-office-lights
 DESC=home-office-lights
 
