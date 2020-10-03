@@ -1,6 +1,8 @@
 # Home Office Lights
 I have [WS2812b LED strip in my home office](https://www.jamesridgway.co.uk/using-a-raspberry-pi-to-make-my-office-desk-glow/) that is controlled by a Raspberry Pi.
 
+![RGB Office Light strip](https://www.jamesridgway.co.uk/content/images/size/w2000/2020/10/desk-lights-orange.png)
+
 This repository contains the code that I use to control the lights from the Pi.
 
 `home_office_lights.py` is designed to run as a service via systemctl. This will respond to messages on a Redis queue,
@@ -12,9 +14,10 @@ easily be controlled by other devices by publishing messages to the redis queue.
 All of the following steps should be run on the Raspberry Pi controlling the lights. This codebase assumes that the 
 lights are running off of GPIO-18.
 
-1. Checkout this repository to `/srv/home-office-lights`
-2. Install redis using: `sudo ./install-redis.sh`
-3. Install `home_office_lights.py` as a service using: `sudo ./install-office-lights.sh 192.168.1.10`. The IP address should be the IP of your Raspberry Pi.
+1. Install `rpi_ws281x`
+2. Checkout this repository to `/srv/home-office-lights`
+3. Install redis using: `sudo ./install-redis.sh`
+4. Install `home_office_lights.py` as a service using: `sudo ./install-office-lights.sh 192.168.1.10`. The IP address should be the IP of your Raspberry Pi.
 
 That's it, the service (`home-office-lights.service`) is up and running and is controlled by `systemctl`.
 
@@ -26,7 +29,12 @@ On any machine running python3 with PyRSMQ installed you can run any of these ex
     REDIS=192.168.1.10 python3 home_office_lights.py '{"type": "off"}'
     REDIS=192.168.1.10 python3 home_office_lights.py '{"type": "on"}'
 
-## Basic Scripts
+## Controlling from the iPad
+The lights can be controlled from an [iPad using Pythonista](https://www.jamesridgway.co.uk/getting-started-with-programming-and-ssh-on-the-ipad/).
+
+[Here](./ipad) is a simple script and GUI that I use to control the lights from the iPad.
+
+## Other Basic Scripts
 The following basic scripts are designed to be run on the Raspberry Pi and execute commands via `rpi_ws281x`.
 
 * **off.py**<br />
