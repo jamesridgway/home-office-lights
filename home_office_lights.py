@@ -29,7 +29,7 @@ while True:
         msg = json.loads(msg_wrapper['message'])
 
         # Provided this is no an 'alert' or an 'off save this as the previous message
-        if msg['type'] != 'alert' and msg['type'] != 'off':
+        if msg['type'] != 'alert' and msg['type'] != 'off' and msg['type'] != 'on':
             previous_msg = msg
 
         # Action the message
