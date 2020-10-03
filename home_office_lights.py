@@ -14,6 +14,7 @@ queue.createQueue().execute()
 strip_manager = StripManager.default()
 
 def handle_msg(msg):
+    print("Handling {} message".format(msg['type']))
     if msg['type'] == 'solid-colour':
         strip_manager.solid_color(msg['r'], msg['g'], msg['b'])
     if msg['type'] == 'alert':
