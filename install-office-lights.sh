@@ -9,6 +9,7 @@ fi
 
 echo "Service config"
 cp ./home-office-lights/home-office-lights.service /lib/systemd/system/home-office-lights.service
+sed -i "s/127.0.0.1/${1}/g" /lib/systemd/system/home-office-lights.service
 
 echo "Restart service"
 sudo systemctl daemon-reload
